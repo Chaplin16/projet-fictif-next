@@ -15,7 +15,7 @@ export default function Add() {
         }
 
         // ici on appelle notre api avec un deuxieme parametre CAR c est une requete POST on a besoin de plus de choses à prendre en compte 
-        fetch(`https://projet-fictif-next.vercel.app/api/vocapi`, {
+        fetch(`${window.location.origin}/api/vocapi`, {
             method: "POST",
             body: JSON.stringify(newWord),
             headers: {
@@ -24,7 +24,6 @@ export default function Add() {
         })
         .then(response => response.json()) //la response en json
         .then(data => {
-
             console.log(data)
         })
 
