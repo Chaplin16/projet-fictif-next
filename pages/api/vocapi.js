@@ -6,7 +6,7 @@ export default function handler(req, res) {
     try {
     if (req.method === "GET") {
 
-      const filePath = path.join(process.cwd(), "data", "list.json"); //on prend le dossier courant et le fichier .json
+      const filePath = path.join(process.cwd(), `data`, `list.json`); //on prend le dossier courant et le fichier .json
       const fileData = fs.readFileSync(filePath);  //cette methode lit le fichier et retourne les donnees
       const data = JSON.parse(fileData); // on transforme ces donnees en js
 
@@ -25,7 +25,7 @@ export default function handler(req, res) {
 
 
         //maintenant il faut utiliser ce nouveau fichier pour remplacer l ancien avec ces nouvelles donnees
-        const filePath = path.join(process.cwd(), 'data', 'list.json') // d abord on trouve le chemin
+        const filePath = path.join(process.cwd(), `data`, `list.json`) // d abord on trouve le chemin
         const fileData = fs.readFileSync(filePath) // on recupere les donnees à partir du chemin
         const data = JSON.parse(fileData) // on cree du js a partir du json
         data.englishList[0].data.push(newWord) //c est du js donc on le manipule comme telle , ici on rajoute dans son emplacement en suivant son chemin dans l api où lobjet newWord sera ecrit
