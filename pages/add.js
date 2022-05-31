@@ -15,7 +15,7 @@ export default function Add() {
         }
 
         // ici on appelle notre api avec un deuxieme parametre CAR c est une requete POST on a besoin de plus de choses à prendre en compte 
-        fetch(`/api/vocapi`, {
+        fetch(`${window.location.origin}/api/vocapi`, {
             method: "POST",
             body: JSON.stringify(newWord),
             headers: {
