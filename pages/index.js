@@ -1,30 +1,29 @@
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
-import {v4 as uuidv4} from 'uuid'
-import {useState,useEffect} from 'react'
+import { v4 as uuidv4 } from "uuid";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import img from "../public/woman-work.png";
 
 // pour utiliser les données qui sont retournées d un fichier cote client il faut mettre en parametres props
 export default function Home(props) {
-
-  const [state,setState] = useState(false);
+  const [state, setState] = useState(false);
 
   useEffect(() => {
-    newWord()
-  }, [])
+    newWord();
+  }, []);
 
   const newWord = () => {
     fetch(`/api/vocapi`)
-    .then(response => response.json())
-    .then(data => setState(data))
+      .then((response) => response.json())
+      .then((data) => setState(data));
+  };
+
+  let randomWord;
+  if (state) {
+    const array = state.englishList[0].data;
+    randomWord = array[Math.floor(Math.random() * array.length)].en;
   }
-
-let randomWord;
-if(state){
-  const array = state.englishList[0].data;
-  randomWord = array[Math.floor(Math.random() * array.length)].en;
-  console.log(randomWord)
-}
-
 
   return (
     <>
@@ -33,25 +32,21 @@ if(state){
         <title className={styles.titre}>Titre</title>
       </Head>
       <div>
-        
-         {/* tableau avec le array de vocabulaire
-         <h1 className={styles.titre}>Vocabulaire de base</h1>
-        <table className={styles.tableau}>
-          <tbody>
-            {props.array.map( (el) => (
-              <tr key={uuidv4()}>
-                <td>{el.fr}</td>
-                <td>{el.en}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table> */}
-
         <h1 className="text-center p-3">Mots au hasard</h1>
-        <button 
-        onClick={newWord}
-        className="btn btn-primary d-block m-auto">GET RANDOM WORD</button>
+        <button onClick={newWord} className="btn btn-primary d-block m-auto">
+          GET RANDOM WORD
+        </button>
         <h2 className="text-center p-3">{randomWord}</h2>
+      </div>
+      <div className="text-center">
+        <Image
+          layout="intrinsic"
+          placeholder="blur"
+          src={img}
+          width="558"
+          height="640"
+          alt="femme au travail"
+        />
       </div>
     </>
   );
@@ -66,20 +61,20 @@ export async function getStaticProps() {
   // on extrait le tableau de données dans array avec le nom du tableau, dans le fichier il s appelle vocabulary
   const array = data.vocabulary;
 
-  //  Si on veut retourner une erreur 404 ssi par exemple le tableau est vide 
-  if (array.length === 0){
+  //  Si on veut retourner une erreur 404 ssi par exemple le tableau est vide
+  if (array.length === 0) {
     return {
-  //     notFound : true
+      //     notFound : true
       redirect: {
-        destination: "./isr"
-      }
-    }
+        destination: "./isr",
+      },
+    };
   }
 
-  if (array.length === 0){
+  if (array.length === 0) {
     return {
-      notFound : true
-    }
+      notFound: true,
+    };
   }
 
   return {

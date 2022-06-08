@@ -23,7 +23,6 @@ export default function handler(req, res) {
           fr: frWord
         }
 
-
         //maintenant il faut utiliser ce nouveau fichier pour remplacer l ancien avec ces nouvelles donnees
         const filePath = path.join(process.cwd(), `data`, `list.json`) // d abord on trouve le chemin
         const fileData = fs.readFileSync(filePath) // on recupere les donnees à partir du chemin

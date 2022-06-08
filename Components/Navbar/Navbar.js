@@ -12,14 +12,11 @@ export default function Navbar() {
         <Link href="/list">
             <a>Listes</a>
         </Link>
-        <Link href="/isr">
-            <a>ISR</a>
+        <Link href="/quote">
+            <a>Citations</a>
         </Link>
         <Link href="/cours">
             <a>BTC</a>
-        </Link>
-        <Link href="/add">
-            <a>Add (POST)</a>
         </Link>
     </nav>
   )

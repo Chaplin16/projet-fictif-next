@@ -4,7 +4,7 @@ export default function Cours(props) {
 
   return (
     <div>
-      <h1 className="my-2 text-center">Le BTC est à : {props.results.bpi.EUR.rate}</h1>
+      <h1 className="my-2 text-center pt-5">Le BTC est à :<br /> {props.results.bpi.EUR.rate}</h1>
     </div>
   );
 }
